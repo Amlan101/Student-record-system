@@ -6,6 +6,7 @@ import model.Grade;
 import service.GradeService;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class GradeServiceImpl implements GradeService {
 
@@ -48,6 +49,15 @@ public class GradeServiceImpl implements GradeService {
             gradeDAO.deleteGrade(gradeId);
         } catch (SQLException e) {
             throw new ServiceException("Error deleting grade: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public List<Grade> getAllGrades() throws ServiceException {
+        try {
+            return gradeDAO.getAllGrades();
+        } catch (SQLException e) {
+            throw new ServiceException("Error retrieving all grades: " + e.getMessage(), e);
         }
     }
 }

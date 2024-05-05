@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GradeDAO {
 
@@ -14,6 +16,8 @@ public class GradeDAO {
     private static final String SELECT_GRADE_BY_ID_SQL = "SELECT * FROM grades WHERE grade_id = ?";
     private static final String UPDATE_GRADE_SQL = "UPDATE grades SET enrollment_id = ?, assignment_id = ?, score = ?, letter_grade = ? WHERE grade_id = ?";
     private static final String DELETE_GRADE_SQL = "DELETE FROM grades WHERE grade_id = ?";
+    private static final String SELECT_ALL_GRADES_SQL = "SELECT * FROM grades";
+
 
     public void insertGrade(Grade grade) throws SQLException {
         Connection connection = DatabaseConnection.getConnection();
@@ -67,5 +71,25 @@ public class GradeDAO {
         statement.executeUpdate();
         statement.close();
         connection.close();
+    }
+
+    public List<Grade> getAllGrades() throws SQLException {
+        List<Grade> grades = new ArrayList<>();
+        Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(SELECT_ALL_GRADES_SQL);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            Grade grade = new Grade();
+            grade.setGradeId(resultSet.getInt("grade_id"));
+            grade.setEnrollmentId(resultSet.getInt("enrollment_id"));
+            grade.setAssignmentId(resultSet.getInt("assignment_id"));
+            grade.setCgpa(resultSet.getDouble("score"));
+            grade.setLetterGrade(resultSet.getString("letter_grade"));
+            grades.add(grade);
+        }
+        resultSet.close();
+        statement.close();
+        connection.close();
+        return grades;
     }
 }

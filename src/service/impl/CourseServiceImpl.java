@@ -17,9 +17,10 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void createCourse(Course course) throws ServiceException {
+    public boolean createCourse(Course course) throws ServiceException {
         try {
             courseDAO.insertCourse(course);
+            return true;
         } catch (SQLException e) {
             throw new ServiceException("Error creating course: " + e.getMessage(), e);
         }
@@ -40,12 +41,13 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void updateCourse(Course course) throws ServiceException {
+    public boolean updateCourse(Course course) throws ServiceException {
         try {
             courseDAO.updateCourse(course);
         } catch (SQLException e) {
             throw new ServiceException("Error updating course: " + e.getMessage(), e);
         }
+        return false;
     }
 
     @Override

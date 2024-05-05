@@ -12,9 +12,9 @@ import java.util.List;
 
 public class StudentDAO {
 
-    private static final String INSERT_STUDENT_SQL = "INSERT INTO students (first_name, last_name, email, date_of_birth) VALUES (?, ?, ?, ?)";
+    private static final String INSERT_STUDENT_SQL = "INSERT INTO students (first_name, last_name, email) VALUES (?, ?, ?)";
     private static final String SELECT_STUDENT_BY_ID_SQL = "SELECT * FROM students WHERE student_id = ?";
-    private static final String UPDATE_STUDENT_SQL = "UPDATE students SET first_name = ?, last_name = ?, email = ?, date_of_birth = ? WHERE student_id = ?";
+    private static final String UPDATE_STUDENT_SQL = "UPDATE students SET first_name = ?, last_name = ?, email = ? WHERE student_id = ?";
     private static final String DELETE_STUDENT_SQL = "DELETE FROM students WHERE student_id = ?";
     private static final String SELECT_ALL_STUDENTS_SQL = "SELECT * FROM students";
 
@@ -24,7 +24,6 @@ public class StudentDAO {
         statement.setString(1, student.getFirstName());
         statement.setString(2, student.getLastName());
         statement.setString(3, student.getEmail());
-        statement.setDate(4, new java.sql.Date(student.getDateOfBirth().getTime()));  // Convert Java Date to SQL Date
         statement.executeUpdate();
         statement.close();
         connection.close();
@@ -43,7 +42,6 @@ public class StudentDAO {
             student.setFirstName(resultSet.getString("first_name"));
             student.setLastName(resultSet.getString("last_name"));
             student.setEmail(resultSet.getString("email"));
-            student.setDateOfBirth(new java.util.Date(resultSet.getDate("date_of_birth").getTime()));  // Convert SQL Date to Java Date
         }
         resultSet.close();
         statement.close();
@@ -57,7 +55,6 @@ public class StudentDAO {
         statement.setString(1, student.getFirstName());
         statement.setString(2, student.getLastName());
         statement.setString(3, student.getEmail());
-        statement.setDate(4, new java.sql.Date(student.getDateOfBirth().getTime()));  // Convert Java Date to SQL Date
         statement.setInt(5, student.getStudentId());
         statement.executeUpdate();
         statement.close();
@@ -93,7 +90,6 @@ public class StudentDAO {
         student.setFirstName(resultSet.getString("first_name"));
         student.setLastName(resultSet.getString("last_name"));
         student.setEmail(resultSet.getString("email"));
-        student.setDateOfBirth(new java.util.Date(resultSet.getDate("date_of_birth").getTime()));
         return student;
     }
 
