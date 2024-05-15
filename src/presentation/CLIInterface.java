@@ -93,7 +93,6 @@ public class CLIInterface {
         }
     }
 
-
     // Method to start the CLI interface
     public void start() {
         displayMainMenu(); // Display the main menu
@@ -139,7 +138,6 @@ public class CLIInterface {
             displayMainMenu(); // Display the main menu again
         }
     }
-
 
     public void manageInstructorsMenu(Scanner scanner) {
         System.out.println("Work in progress...");
@@ -415,8 +413,6 @@ public class CLIInterface {
             System.out.println("Error deleting grade: " + e.getMessage());
         }
     }
-
-
 
     public void manageAssignmentsMenu(Scanner scanner) {
         while (true) {
@@ -860,7 +856,7 @@ public class CLIInterface {
         try {
             System.out.println("Enter updated details of the student:");
 
-            System.out.print("First Name: ");
+            System.out.println("First Name: ");
             String firstName = scanner.nextLine();
 
             System.out.print("Last Name: ");

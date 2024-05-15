@@ -38,4 +38,12 @@ public class Course {
     public void setCourseDescription(String courseDescription) {
         this.courseDescription = courseDescription;
     }
+
+    @Override
+    public String toString() {
+        return "Course ID: " + courseId +
+                "\nCourse Name: " + courseName +
+                "\nCourse Description: " + courseDescription + "\n";
+    }
+
 }

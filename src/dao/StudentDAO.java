@@ -55,7 +55,7 @@ public class StudentDAO {
         statement.setString(1, student.getFirstName());
         statement.setString(2, student.getLastName());
         statement.setString(3, student.getEmail());
-        statement.setInt(5, student.getStudentId());
+        statement.setInt(4, student.getStudentId());
         statement.executeUpdate();
         statement.close();
         connection.close();

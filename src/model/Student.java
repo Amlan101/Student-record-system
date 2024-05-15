@@ -1,7 +1,4 @@
 package model;
-
-import java.util.Date;
-
 public class Student {
     private int studentId;
     private String firstName;
@@ -9,15 +6,12 @@ public class Student {
     private String email;
 
     // Constructors
-    public Student() {
-    }
-
+    public Student() {}
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
-
     // Getters and Setters
     public int getStudentId() {
         return studentId;
